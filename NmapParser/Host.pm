@@ -8,14 +8,6 @@ my @ISA = "NmapParser";
 
 use vars qw($AUTOLOAD);
 
-### passed
-#sub new {
-#    my $pkg = shift;
-#    my $self = bless {}, $pkg;
-#    $self->initialize(@_);
-#    return $self;
-#}
-
 sub new {
     my $pkg = shift;
     my $self = bless {}, $pkg;
@@ -24,7 +16,6 @@ sub new {
     $self->{Host} = $self->{stem};
     return $self;
 }
-
 
 # passed
 sub initialize {
@@ -43,18 +34,16 @@ sub hostname {
 	return ( ${$self->{Host}{hostname}}[$index]{name} );		
 }
 
-#passed
 sub uptime_lastboot { 
 	my ($self) = @_;
-	my $returnValue = "-1";
+	my $returnValue = undef;
 	if ( defined($self->{Host}{uptime}{lastboot})) { $returnValue = $self->{Host}{uptime}{lastboot}; } 
 	return $returnValue;	
 }
 
-#passed
 sub uptime_seconds { 
 	my ($self) = @_;
-	my $returnValue = "-1";
+	my $returnValue = undef;
 #	$self->{Host}{status}{state}
 	if ( defined($self->{Host}{uptime}{seconds})) { $returnValue = $self->{Host}{uptime}{seconds}; } 
 	return $returnValue;	
@@ -87,7 +76,7 @@ sub extraports_count {
 
 sub extraports_state { 
 	my ($self,$index) = @_;
-	my $returnValue = "-1";
+	my $returnValue = undef;
 	if (defined($index)) { $returnValue = $self->{Host}{extraports}[$index]{state};
 	} else { $returnValue = $self->{Host}{extraports}[0]{state}; }
 	return $returnValue;	
@@ -171,7 +160,7 @@ sub hostscripts {
 
 sub trace_proto { 
 	my ($self) = @_;
-	my $returnValue = "-1";
+	my $returnValue = undef;
 	if ( defined($self->{Host}{trace}{proto})) { $returnValue = $self->{Host}{trace}{proto}; } 
 	return $returnValue;		
 }
@@ -179,7 +168,7 @@ sub trace_proto {
 
 sub tcp_service {	 
 	my ($self,$port) = @_;
-	my $service = "-1";
+	my $service = undef;
 	foreach ( @{$self->{Host}{ports}}) { 
 		if ( ($_->{portid} eq $port) && ($_->{protocol} eq "tcp" ) ) { $service = $_; }
 	}
@@ -190,7 +179,7 @@ sub tcp_service {
 
 sub udp_service { 
 	my ($self,$port) = @_;
-	my $service = "-1";
+	my $service = undef;
 	foreach ( @{$self->{Host}{ports}}) { 
 		if ( ($_->{portid} eq $port) && ($_->{protocol} eq "udp" ) ) { $service = Service->new($_); }
 	}
@@ -202,7 +191,7 @@ sub udp_service {
 
 sub mac_vendor { 
 	my ($self) = @_;
-	my  $macVendor = "-1";
+	my  $macVendor = undef;
 	
 	if ( ref($self->{Host}{address}) eq "ARRAY") {
 		foreach (@{$self->{Host}{address}}) { if ( $_->{addrtype} eq "mac" ) { $macVendor = $_->{vendor}; } } 
@@ -233,7 +222,7 @@ sub ipv6_addr {
 sub getAddrValue { 
 	
 	my ($self,$type) = @_;
-	my  $returnValue = "-1"; 
+	my  $returnValue = undef; 
 	if ( ref($self->{Host}{address}) eq "ARRAY") {
 		foreach (@{$self->{Host}{address}}) { if ( $_->{addrtype} eq $type ) { $returnValue = $_->{addr}; } } 
 	} elsif (ref($self->{Host}{address}) eq "HASH") {
@@ -399,7 +388,7 @@ sub addrtype {
 
 sub distance {
 	my ($self) = @_;
-	my $returnValue = "-1";
+	my $returnValue = undef;
 	if ( defined($self->{Host}{distance}{value})) { $returnValue = $self->{Host}{distance}{value}; } 
 	return $returnValue;		
 }
@@ -407,7 +396,7 @@ sub distance {
 #passed
 sub ipidsequence_class {
 	my ($self) = @_;
-	my $returnValue = "-1";
+	my $returnValue = undef;
 	if ( defined($self->{Host}{ipidsequence}{class})) { $returnValue = $self->{Host}{ipidsequence}{class}; } 
 	return $returnValue;	
 }
@@ -415,7 +404,7 @@ sub ipidsequence_class {
 #passed
 sub ipidsequence_values { 
 	my ($self) = @_;
-	my $returnValue = "-1";
+	my $returnValue = undef;
 	if ( defined($self->{Host}{ipidsequence}{values})) { $returnValue = $self->{Host}{ipidsequence}{values}; } 
 	return $returnValue;				
 }
@@ -423,7 +412,7 @@ sub ipidsequence_values {
 #passed
 sub tcpsequence_values {
 	my ($self) = @_;
-	my $returnValue = "-1";
+	my $returnValue = undef;
 	if ( defined($self->{Host}{tcpsequence}{values})) { $returnValue = $self->{Host}{tcpsequence}{values}; } 
 	return $returnValue;				
 }
@@ -431,14 +420,14 @@ sub tcpsequence_values {
 #passed	
 sub tcpsequence_index { 
 	my ($self) = @_;
-	my $returnValue = "-1";
+	my $returnValue = undef;
 	if ( defined($self->{Host}{tcpsequence}{index})) { $returnValue = $self->{Host}{tcpsequence}{index}; } 
 	return $returnValue;		
 }
 
 sub tcpsequence_difficulty { 	
 	my ($self) = @_;
-	my $returnValue = "-1";
+	my $returnValue = undef;
 	if ( defined($self->{Host}{tcpsequence}{difficulty})) { $returnValue = $self->{Host}{tcpsequence}{difficulty}; } 
 	return $returnValue;		
 }
@@ -446,7 +435,7 @@ sub tcpsequence_difficulty {
 #passed
 sub tcptssequence_class {
 	my ($self) = @_;
-	my $returnValue = "-1";
+	my $returnValue = undefs;
 	if ( defined($self->{Host}{tcptssequence}{class})) { $returnValue = $self->{Host}{tcptssequence}{class}; } 
 	return $returnValue;		
 }
@@ -454,28 +443,28 @@ sub tcptssequence_class {
 #passed
 sub tcptssequence_values {
 	my ($self) = @_;
-	my $returnValue = "-1";
+	my $returnValue = undef;
 	if ( defined($self->{Host}{tcptssequence}{values})) { $returnValue = $self->{Host}{tcptssequence}{values}; } 
 	return $returnValue;		
 }
 
 sub starttime { 
 	my ($self) = @_;
-	my $returnValue = "-1";
+	my $returnValue = undef;
 	if ( defined($self->{Host}{starttime})) { $returnValue = $self->{Host}{starttime}; } 
 	return $returnValue;	
 }
 
 sub endtime { 
 	my ($self) = @_;
-	my $returnValue = "-1";
+	my $returnValue = undef;
 	if ( defined($self->{Host}{endtime})) { $returnValue = $self->{Host}{endtime}; } 
 	return $returnValue;	
 }
 		
 sub latency { 
 	my ($self) = @_;
-	my $returnValue = "-1";
+	my $returnValue = undef;
 	if ( defined($self->{Host}{times}{srtt})) { $returnValue = $self->{Host}{times}{srtt}; } 
 	return $returnValue;	
 }

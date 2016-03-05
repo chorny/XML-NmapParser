@@ -43,22 +43,15 @@ sub owner {
 sub scripts { 
 	my ($self,$name) = @_;
 	my @scripts;
+
 	if ( defined($self->{stem}{scripts})) { 
 		foreach ( @{$self->{stem}{scripts}} ) {
-			if ( defined($name)) { 
-				if ( $_->{id} eq $name ) {
-					push(@scripts, $_->{output}); 
-					my %hash; 
-					for my $key ( keys %{$_->{elem}} ) { 
-						$hash{$key} = $_->{elem}{$key}; 
-					} 
-					push(@scripts,{ %hash });
-				} 
-			} else { push(@scripts, $_->{id} ); }
+			# return an array of OS objects......
+			my $script = NmapParser::Host::Script->new($_);
+			push(@scripts,$script);
 		}
-	} 
-
-	return @scripts; 
+	}	
+	return @scripts;		 
 }
 
 # new calls START  
