@@ -1,4 +1,4 @@
-# v 0.1
+# v 0.1a
 
 package NmapParser::Host::Script; 
 use base NmapParser::Host;
@@ -7,13 +7,21 @@ my @ISA = "Host";
   
 use vars qw($AUTOLOAD);
 
-
 sub new {
     my $pkg = shift;
     my $self = bless {}, $pkg;
-    $self->initialize(@_);
+
+    $self->SUPER::initialize(shift, shift);
+    $self->{Script} = $self->{stem};
     return $self;
 }
+
+#sub new {
+#    my $pkg = shift;
+#    my $self = bless {}, $pkg;
+#    $self->initialize(@_);
+#    return $self;
+#}
 
 sub initialize {
     my $self = shift;

@@ -98,10 +98,8 @@ sub all_trace_hops {
 			}
 		} elsif ( ref($self->{stem}{traceroute}{hop}) eq "HASH") { 
 			push(@hops,$self->{stem}{traceroute}{hop});
-		} else { 
-			die "WTF!!!! \n";
-		}
-		 
+		} 
+#		else { die "WTF!!!! \n";}
 	}  
 	
 	return @hops; 
