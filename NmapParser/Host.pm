@@ -87,6 +87,22 @@ sub trace_port { }
 sub trace_error { }
 
 
+sub traceroute { 
+	my ($self) = @_;
+	my @traceoute; 
+	if ( defined($self->{stem}{traceroute})) {
+		if ( ref($self->{stem}{traceroute}{hop}) eq "ARRAY") { 
+			foreach ( @{$self->{stem}{traceroute}{hop}}) { 
+				push(@traceoute,$_);
+			}
+		} elsif ( ref($self->{stem}{traceroute}{hop}) eq "HASH") { 
+			push(@traceoute,$self->{stem}{traceroute}{hop});
+		} 
+	} 
+
+	return @traceoute; 
+
+} 
 
 sub all_trace_hops { 
 	my ($self) = @_;
@@ -94,10 +110,12 @@ sub all_trace_hops {
 	if ( defined($self->{stem}{traceroute})) {
 		if ( ref($self->{stem}{traceroute}{hop}) eq "ARRAY") { 
 			foreach ( @{$self->{stem}{traceroute}{hop}}) { 
-				push(@hops,$_);
+                		my $trace = NmapParser::Host::TraceHop->new($_);
+				push(@hops,$trace);
 			}
 		} elsif ( ref($self->{stem}{traceroute}{hop}) eq "HASH") { 
-			push(@hops,$self->{stem}{traceroute}{hop});
+                	my $trace = NmapParser::Host::TraceHop->new($_);
+			push(@hops, $self->{stem}{traceroute}{hop});
 		} 
 #		else { die "WTF!!!! \n";}
 	}  

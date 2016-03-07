@@ -7,7 +7,6 @@ my @ISA = "Host";
   
 use vars qw($AUTOLOAD);
 
-
 sub new {
     my $pkg = shift;
     my $self = bless {}, $pkg;
