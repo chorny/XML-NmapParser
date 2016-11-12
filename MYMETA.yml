@@ -1,22 +1,22 @@
 ---
-abstract: 'The great new XML::NmapParser!'
+abstract: unknown
 author:
-  - 'P Johnson [littleurl] <pjohnson21211@gmail.com>'
+  - 'Paul M Johnson <pjohnson21211@gmail.com>'
 build_requires:
   Test::More: '0'
 configure_requires:
-  Module::Build: '0'
+  ExtUtils::MakeMaker: '0'
 dynamic_config: 0
-generated_by: 'Module::Build version 0.4218, CPAN::Meta::Converter version 2.150001'
+generated_by: 'ExtUtils::MakeMaker version 7.0401, CPAN::Meta::Converter version 2.150001'
 license: artistic_2
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: '1.4'
 name: XML-NmapParser
-provides:
-  XML::NmapParser:
-    file: lib/XML/NmapParser.pm
-    version: '0.01'
-resources:
-  license: http://opensource.org/licenses/artistic-license-2.0.php
-version: '0.01'
+no_index:
+  directory:
+    - t
+    - inc
+requires:
+  perl: '5.006'
+version: '0.1'

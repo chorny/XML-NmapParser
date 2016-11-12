@@ -1,10 +1,10 @@
 {
-   "abstract" : "The great new XML::NmapParser!",
+   "abstract" : "unknown",
    "author" : [
-      "P Johnson [littleurl] <pjohnson21211@gmail.com>"
+      "Paul M Johnson <pjohnson21211@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Module::Build version 0.4218",
+   "generated_by" : "ExtUtils::MakeMaker version 7.0401, CPAN::Meta::Converter version 2.150001",
    "license" : [
       "artistic_2"
    ],
@@ -13,6 +13,12 @@
       "version" : "2"
    },
    "name" : "XML-NmapParser",
+   "no_index" : {
+      "directory" : [
+         "t",
+         "inc"
+      ]
+   },
    "prereqs" : {
       "build" : {
          "requires" : {
@@ -21,21 +27,15 @@
       },
       "configure" : {
          "requires" : {
-            "Module::Build" : "0"
+            "ExtUtils::MakeMaker" : "0"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "perl" : "5.006"
          }
       }
    },
-   "provides" : {
-      "XML::NmapParser" : {
-         "file" : "lib/XML/NmapParser.pm",
-         "version" : "0.01"
-      }
-   },
    "release_status" : "stable",
-   "resources" : {
-      "license" : [
-         "http://opensource.org/licenses/artistic-license-2.0.php"
-      ]
-   },
-   "version" : "0.01"
+   "version" : "0.1"
 }
