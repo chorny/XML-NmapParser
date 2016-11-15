@@ -19,6 +19,11 @@ my $builder = Module::Build->new(
         #'ABC'              => 1.6,
         #'Foo::Bar::Module' => 5.0401,
     },
+    meta_merge => {
+        resources => {
+            repository => 'http://github.com/littleurl/XML-NmapParser',
+        },
+    },
     add_to_cleanup     => [ 'XML-NmapParser-*' ],
     create_makefile_pl => 'traditional',
 );
